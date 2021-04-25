@@ -12,6 +12,7 @@
 
 ## [Description](#description)
 This application allows the user to add and save notes. 
+Deployed application: https://mysterious-ridge-90131.herokuapp.com/
 
 ![This is the gif for the application](Assets/note_taker.gif)`
 
