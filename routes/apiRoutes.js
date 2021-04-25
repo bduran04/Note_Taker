@@ -1,19 +1,19 @@
 //responsible to route from server to front end 
-const router = require('express').Router();
+// const router = require('express').Router();
+const notesDB = require('../db/db.json')
 const fs = require('fs');
 const path = require('path');
-const notesDB = require('../db/db.json');
 const uuid = require('uuid');
 
-module.exports = (router) => {
+module.exports = (app) => {
 
 //routes to match front end 
-router.get('/api/notes', (req, res) => {
+app.get('/api/notes', (req, res) => {
   const notes = JSON.parse(fs.readFileSync('./db/db.json'));
   res.json(notes);
 });
 
-router.post('/api/notes', (req, res) => {
+app.post('/api/notes', (req, res) => {
     const notes = JSON.parse(fs.readFileSync('./db/db.json'));
     const newNote = req.body;
     newNote.id = uuid.v4();
@@ -23,7 +23,7 @@ router.post('/api/notes', (req, res) => {
   });
 
 // Displays a single character, or returns false
-router.delete('/api/notes/:id', (req, res) => {
+app.delete('/api/notes/:id', (req, res) => {
   const notes = JSON.parse(fs.readFileSync('./db/db.json'));
   const delNote = req.params.id;
   let filteredNotes = notes.filter((note) => 
@@ -32,5 +32,5 @@ router.delete('/api/notes/:id', (req, res) => {
     res.json(filteredNotes);
   })
 }
-module.exports = router;
+// module.exports = app;
   
